@@ -188,6 +188,20 @@ qplot(magnet_dumbbell_z, yaw_belt, color = correctPredict, data = ptest,
       main = "Validation Data Predictions")
 ```
 
+## Testing Predictions
+
+The predictions for the testing data set are below:
+
+```{r rftesting, echo=FALSE, eval=TRUE}
+## Predictions for testing data
+test_id <- c(1:20)
+testPredicts <- predict(modelRf, testing)
+testing_predictions = data.frame(test_id, testPredicts)
+testing_predictions <- as.data.frame(t(testing_predictions))
+names(testing_predictions) <- NULL
+testing_predictions
+```
+
 ## Conlusions
 
 The random forest model fits the selected predictors to predict the excercise performance classifiers of the split training and validation data sets with `r sprintf("%.1f", 100*trainAccuracy)`% and `r sprintf("%.1f", 100*testAccuracy)`% accuracy, respectively.
